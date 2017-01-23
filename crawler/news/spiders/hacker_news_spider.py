@@ -16,7 +16,7 @@ class HackerNewsSpider(scrapy.Spider):
                     .extract_links(response)
         if next_page:
             print next_page
-            yield scrapy.Request(next_page[-1].url, callback = self.parse)
+            #yield scrapy.Request(next_page[-1].url, callback = self.parse)
 
     def extract_news_item(self, sel, response):
         news_item = HackerNewsItem()
