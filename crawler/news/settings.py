@@ -25,8 +25,10 @@ ITEM_PIPELINES = {
    'news.pipelines.MongoDBPipeline': 300,
 }
 MONGO_URI = 'mongodb://localhost:27017'
-MONGODB_HACK_NEWS_DB = "hackernews"
-MONGODB_HACK_NEWS_COLLECTION = "news"
+MONGODB_TECHBOARD_DB = "board"
+MONGODB_HACK_NEWS_COLLECTION = "hacker_news"
+MONGODB_CITRIX_BLOG_COLLECTION = "citrix_blog"
+
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32

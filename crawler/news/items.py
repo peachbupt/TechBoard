@@ -21,3 +21,10 @@ class HackerNewsItem(scrapy.Item):
     comments_url = Field()
     user_name = Field()
     since = Field()
+
+class CitrixBlogItem(scrapy.Item):
+    title = Field()
+    url = Field()
+    lastmod = Field()
+
+

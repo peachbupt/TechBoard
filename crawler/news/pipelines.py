@@ -14,7 +14,9 @@ class MongoDBPipeline(object):
     def __init__(self):
         self.mongo_uri = settings['MONGO_URI']
         self.client = None
-        self.hackernews_db = None
+        self.board_db = None
+        self.hackernews_collection = None
+        self.citrix_collection = None
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -23,10 +25,13 @@ class MongoDBPipeline(object):
     def open_spider(self, spider):
         if self.client == None:
             self.client = MongoClient(self.mongo_uri)
+            self.board_db = self.client[settings['MONGODB_TECHBOARD_DB']]
         if spider.name == "hackernews":
-            self.hackernews_db = self.client[settings['MONGODB_HACK_NEWS_DB']]
+            self.hackernews_collection = self.board_db[settings['MONGODB_HACK_NEWS_COLLECTION']]
+        elif spider.name == "citrix":
+            self.citrix_collection = self.board_db[settings['MONGODB_CITRIX_BLOG_COLLECTION']]
 
-    def close_spider():
+    def close_spider(self, spider):
         self.client.close()
 
     def process_item(self, item, spider):
@@ -37,8 +42,16 @@ class MongoDBPipeline(object):
                     valid = False
                     raise DropItem("Missing {0}!".format(data))
             if valid:
-                collection = self.hackernews_db[settings['MONGODB_HACK_NEWS_COLLECTION']]
-                collection.insert(dict(item))
+                self.hackernews_collection.insert(dict(item))
                 log.msg("news added to MongoDB database!",
+                    level=log.DEBUG, spider=spider)
+        elif spider.name == "citrix":
+            for data in item:
+                if not data:
+                    valid = False
+                    raise DropItem("Missing {0}!".format(data))
+            if valid:
+                self.citrix_collection.insert(dict(item))
+                log.msg("blog added to MongoDB database!",
                     level=log.DEBUG, spider=spider)
         return item
