@@ -13,18 +13,13 @@ class NewsItem(scrapy.Item):
     # name = scrapy.Field()
     pass
 
-class HackerNewsItem(scrapy.Item):
-    title = Field()
-    url = Field()
-    points = Field()
-    comments = Field()
-    comments_url = Field()
-    user_name = Field()
-    since = Field()
-
-class CitrixBlogItem(scrapy.Item):
-    title = Field()
-    url = Field()
-    lastmod = Field()
-
+class BoardNewsItem(scrapy.Item):
+    title          = Field()
+    url            = Field()
+    points         = Field()
+    comments       = Field()
+    comments_url   = Field()
+    user_name      = Field()
+    since          = Field()
+    post_time      = Field()
 

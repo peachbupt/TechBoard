@@ -1,7 +1,8 @@
 import scrapy
+import datetime
 from urlparse import urljoin
 from scrapy.linkextractors import LinkExtractor
-from news.items import HackerNewsItem
+from news.items import BoardNewsItem
 
 class HackerNewsSpider(scrapy.Spider):
     name = "hackernews"
@@ -19,7 +20,7 @@ class HackerNewsSpider(scrapy.Spider):
             #yield scrapy.Request(next_page[-1].url, callback = self.parse)
 
     def extract_news_item(self, sel, response):
-        news_item = HackerNewsItem()
+        news_item = BoardNewsItem()
         link_sel = sel.xpath("./td[@class='title']")
         title = link_sel.xpath("./a/text()").extract_first()
         self.add_if_not_none(news_item, 'title', title)
@@ -46,6 +47,7 @@ class HackerNewsSpider(scrapy.Spider):
         comments_path = details_sel.xpath("./a[starts-with(@href, 'item')]/@href").extract_first()
         comments_url = (comments_path and urljoin(response.url, comments_path))
         self.add_if_not_none(news_item, 'comments_url', comments_url)
+        self.add_if_not_none(news_item, 'post_time', datetime.datetime.now())
         return news_item
 
     def add_if_not_none(self, dict_item, key, value):

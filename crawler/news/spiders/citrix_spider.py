@@ -1,7 +1,8 @@
 import re
 import scrapy
+import datetime
 from scrapy.utils.sitemap import Sitemap
-from news.items import CitrixBlogItem
+from news.items import BoardNewsItem
 
 class CitrixSpider(scrapy.Spider):
     name = "citrix"
@@ -19,11 +20,12 @@ class CitrixSpider(scrapy.Spider):
     def parse_by_month(self, response):
         s = Sitemap(response.body)
         for month_link in s:
-            item = CitrixBlogItem()
+            item = BoardNewsItem()
             #print month_link
             item['url'] = month_link['loc']
-            item['lastmod'] = month_link['lastmod']
+            item['since'] = month_link['lastmod']
             item['title'] = re.findall(\
                 r'https://www.citrix.com/blogs/(\d+)/(\d+)/(\d+)/(.+?)/', \
                 item['url'])[0][3]
+            item['post_time'] = datetime.datetime.now()
             yield item

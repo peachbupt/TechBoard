@@ -15,3 +15,9 @@ A Techboard that scrapy the news that I interested.
     * mongo
     * db.test.insert({'name':'test'}) WriteResult({ "nInserted" : 1 })
     * db.test.find()
+
+## Web
+
+* pip install flask
+* pip install mongoengine
+* pip install flask-mongoengine
