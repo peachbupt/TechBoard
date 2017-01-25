@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{% block language %}en{% endblock %}">
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="/static/css/style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="header">
+            <div class="brand">
+                <a href="/">TechBoard</a>
+            </div>
+            <div class="header-left">
+                <a href="/newest">New</a> | <a href="/submit">Submit</a>
+            </div>
+            <div class="header-right">
+                {% if g.user and g.user.is_authenticated() %}
+                    <a href="/user/{{ g.user.username }}">{{ g.user.username }}</a> | <a href="/logout">Logout</a>
+                {% else %}
+                    <a href="/login">Login</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="body">
+            {% block body %}
+            {# Override this in sub-templates #}
+            {% endblock %}
+        </div>
+    </body>
+</html>
+{# vim:set ft=htmldjango: #}
