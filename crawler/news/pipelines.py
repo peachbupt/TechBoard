@@ -39,6 +39,7 @@ class MongoDBPipeline(object):
                 valid = False
                 raise DropItem("Missing {0}!".format(data))
         if valid:
+            #TODO: replace insert with update
             self.new_collection.insert(dict(item))
             log.msg("news added to MongoDB database!",
                 level=log.DEBUG, spider=spider)

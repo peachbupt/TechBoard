@@ -22,4 +22,5 @@ class BoardNewsItem(scrapy.Item):
     user_name      = Field()
     since          = Field()
     post_time      = Field()
+    short_url      = Field()
 

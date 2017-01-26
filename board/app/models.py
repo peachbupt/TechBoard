@@ -6,6 +6,7 @@ class Story(db.Document):
     url            = db.StringField()
     points         = db.StringField()
     comments       = db.StringField()
+    short_url      = db.StringField()
     comments_url   = db.StringField()
     user_name      = db.StringField()
     since          = db.StringField()

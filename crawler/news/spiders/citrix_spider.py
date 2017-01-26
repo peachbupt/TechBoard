@@ -27,5 +27,9 @@ class CitrixSpider(scrapy.Spider):
             item['title'] = re.findall(\
                 r'https://www.citrix.com/blogs/(\d+)/(\d+)/(\d+)/(.+?)/', \
                 item['url'])[0][3]
+            item['user_name'] = "cirtix"
+            item['points'] = 0
+            item['comments'] = 0
             item['post_time'] = datetime.datetime.now()
+            item['short_url'] = item['url'].strip().split('/')[2]
             yield item

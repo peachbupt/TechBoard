@@ -4,10 +4,9 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Flask News</title>
-  <meta name="description" content="A HN clone coded in flask">
-  <meta name="author" content="Emilio Coppola">
-
+  <title>Board News</title>
+  <meta name="description" content="A Spider to crawl my interesting website">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/static/css/reset.css">
   <link rel="stylesheet" href="/static/css/style.css">
 
@@ -18,7 +17,7 @@
 <body>
   <section class="page">
     <nav>
-      <h1><a href="/">Flask News</a></h1> <a href="newest">new</a> | <a href="threads?id=coppolaemilio">threads</a> | <a href="newcomments">comments</a> | <a href="show">show</a> | <a href="ask">ask</a> | <a href="jobs">jobs</a> | <a href="submit">submit</a>
+      <h1><a href="/">Board News</a></h1> <a href="newest">new</a> | <a href="threads?id=coppolaemilio">threads</a> | <a href="newcomments">comments</a> | <a href="show">show</a> | <a href="ask">ask</a> | <a href="jobs">jobs</a> | <a href="submit">submit</a>
     </nav>
     <div class="entries">
       {% block body %}{% endblock %}
@@ -26,14 +25,12 @@
     <footer>
       <span class="yclinks"><a href="newsguidelines.html">Guidelines</a>
         | <a href="newsfaq.html">FAQ</a>
-        | <a href="mailto:hn@ycombinator.com">Support</a>
-        | <a href="https://github.com/HackerNews/API">API</a>
+        | <a href="peach.bupt@gmail.com">Support</a>
+        | <a href="https://github.com/peachbupt/TechBoard">API</a>
         | <a href="security.html">Security</a>
         | <a href="lists">Lists</a>
         | <a href="bookmarklet.html">Bookmarklet</a>
-        | <a href="dmca.html">DMCA</a>
-        | <a href="http://www.ycombinator.com/apply/">Apply to YC</a>
-        | <a href="mailto:hn@ycombinator.com">Contact</a></span>
+        | <a href="">Contact</a></span>
     </footer>
   </section>
 

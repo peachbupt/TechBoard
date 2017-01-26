@@ -20,6 +20,7 @@ entries = [
 ]
 
 @app.route('/', methods =['POST', 'GET'])
+@app.route('/index/', methods =['POST', 'GET'])
 def front_page():
     # Get the comment count of each entry
     comment_count = []
@@ -30,11 +31,8 @@ def front_page():
         for comment in comments:
             if entry["id"] == comment["entry_id"]:
                 comment_count[entry["id"]] += 1
-    return render_template('index.html', entries = entries, users = users, comment_count = comment_count)
-
-@app.route('/index/', methods =['POST', 'GET'])
-def index():
-    return render_template('index.html')
+    stories = models.Story.newest_posts(page=1)
+    return render_template('index.html', entries = stories)
 
 @app.route('/newest', defaults={'page': 1})
 @app.route('/newest/', defaults={'page': 1})

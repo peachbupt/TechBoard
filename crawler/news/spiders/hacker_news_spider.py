@@ -48,6 +48,7 @@ class HackerNewsSpider(scrapy.Spider):
         comments_url = (comments_path and urljoin(response.url, comments_path))
         self.add_if_not_none(news_item, 'comments_url', comments_url)
         self.add_if_not_none(news_item, 'post_time', datetime.datetime.now())
+        news_item['short_url'] = news_item['url'].strip().split('/')[2]
         return news_item
 
     def add_if_not_none(self, dict_item, key, value):
