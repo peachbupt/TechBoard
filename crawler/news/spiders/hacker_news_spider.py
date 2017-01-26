@@ -33,10 +33,12 @@ class HackerNewsSpider(scrapy.Spider):
             "./a[starts-with(@href, 'user')]/text()"
         ).extract_first()
         self.add_if_not_none(news_item, 'user_name', user_name)
-        since = details_sel.xpath(
+        since_a = details_sel.xpath("./span[@class='age']")
+        since = since_a.xpath(
             "./a[starts-with(@href, 'item')][contains(., 'ago')]/text()"
         ).extract_first()
         self.add_if_not_none(news_item, 'since', since)
+        print since
         comments = details_sel.xpath(
             "./a[starts-with(@href, 'item')][contains(., 'comment') or"
             "contains(., 'discuss')]/text()"
@@ -48,7 +50,11 @@ class HackerNewsSpider(scrapy.Spider):
         comments_url = (comments_path and urljoin(response.url, comments_path))
         self.add_if_not_none(news_item, 'comments_url', comments_url)
         self.add_if_not_none(news_item, 'post_time', datetime.datetime.now())
-        news_item['short_url'] = news_item['url'].strip().split('/')[2]
+        if news_item['url'].startswith("item?id="):
+            news_item['short_url'] = ""
+        else:
+            news_item['short_url'] = news_item['url'].strip().split('/')[2]
+        
         return news_item
 
     def add_if_not_none(self, dict_item, key, value):
