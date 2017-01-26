@@ -1,65 +1,73 @@
-div.body {
-    margin-left: 10%;
-    margin-right: 10%;
-    background: #EEEEEE;
-    padding: 20px 2em;
-    padding-bottom: 50px;
+.page {
+  max-width: 900px;
+  display: block;
+  margin: 0 auto;
+  background-color: rgb(246, 246, 239);
 }
 
-div.header {
-    margin-left: 10%;
-    margin-right: 10%;
-    padding: 3px 5px;
-    background-color: orange;
-
-    overflow: auto; /* accomodate the floats */
+nav {
+  background-color: rgb(255, 102, 0);
+  font-size: 17px;
+  padding: 10px;
 }
 
-a {
-    text-decoration: none;
-    color: black;
+h1 {
+  display: inline;
+  font-weight: bold;
 }
 
-.sep {
-    font-weight: bold;
+a:link, nav a:visited {
+  color: #000000;
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
 }
 
-body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+footer {
+  padding: 20px 0;
+  text-align: center;
+  border-top: 2px solid rgb(255, 102, 0);
 }
 
-.brand {
-    float: left;
-    margin-right: 3px;
-    font-weight: bold;
-    font-size: 20px;
-    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+.entries {
+  padding: 10px 0;
+}
+.entry {
+  padding: 6px 10px;
 }
 
-div.header a {
-    margin-left: 0.25em;
-    margin-right: 0.25em;
+.entry .index, .entry .content, .entry .item{
+  display: inline;
+}
+.entry .index {
+  color: #828282;
+}
+.entry div.title {
+  display: inline;
+  font-size: 18px;
+}
+.entry .site, .entry .site a {
+  font-weight: normal;
+  color: #828282;
+  font-size: 15px;
+}
+.entry .title a:hover {
+  text-decoration: none;
 }
 
-div.header-left {
-    margin-top: 3px;
-    margin-bottom: 3px;
-    float: left;
+.entry .site a:hover{
+  text-decoration: underline;
 }
 
-div.header-right {
-    margin-top: 3px;
-    margin-bottom: 3px;
-    float: right;
+.entry .content .info {
+  color: #828282;
+  font-size: 15px;
+  display: block;
+  margin-left: 32px;
+}
+.entry .content .info a,
+.entry .content .info a:hover {
+  color: #828282;
 }
 
-
-.header-menu li {
-    display: inline;
-    margin-right: 2em;
-    margin-left: 1em;
-}
-
-.header-menu {
-    background-color: #DDDDDD;
-}
