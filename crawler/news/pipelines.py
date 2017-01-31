@@ -38,8 +38,13 @@ class MongoDBPipeline(object):
             if not data:
                 valid = False
                 raise DropItem("Missing {0}!".format(data))
+        #avoid dupication
+        if self.new_collection.find({"url": item["url"]}).count() > 0:
+            log.msg("URL is already in the MongoDB database!",
+                level=log.DEBUG, spider=spider)      
+            return item
+
         if valid:
-            #TODO: replace insert with update
             self.new_collection.insert(dict(item))
             log.msg("news added to MongoDB database!",
                 level=log.DEBUG, spider=spider)
