@@ -8,12 +8,10 @@ class StackOverflowSpider(Spider):
     start_urls = ["http://stackoverflow.com/?tab=week"]
 
     def parse(self, response):
-        print "*************************"
         questions = response.xpath('//div[@class="summary"]/h3')
 
         for question in questions:
             item = BoardNewsItem()
             item['title'] = question.xpath('a[@class="question-hyperlink"]/text()').extract()[0]
             item['url'] = "http://" + self.allowed_domains + question.xpath('a[@class="question-hyperlink"]/@href').extract()[0]
-            print item
-            print "*************************"
+            yield item
